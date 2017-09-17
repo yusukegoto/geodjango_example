@@ -81,5 +81,16 @@ Vagrant.configure("2") do |config|
       make
       make install
     fi
+
+    which direnv
+    if [ $? != 0 ]; then
+      cd /tmp
+      wget https://github.com/direnv/direnv/releases/download/v2.12.2/direnv.linux-amd64
+      chmod +x direnv.linux-amd64
+      mv direnv.linux-amd64 /usr/local/bin/
+      ln -s /usr/local/bin/direnv.linux-amd64 /usr/local/bin/direnv
+
+      echo 'eval "$(direnv hook bash)"' >> /home/ubuntu/.bashrc
+    fi
   SHELL
 end
