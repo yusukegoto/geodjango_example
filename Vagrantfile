@@ -65,12 +65,18 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   #
-  # mysql-server
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
-    apt-get install -y python2.7 python-pip mysql-client binutils
+    apt-get install -y python2.7 python-pip mysql-client libmysqlclient-dev binutils
     pip install -U pip
     pip install virtualenv
+
+    if ! [ -f /etc/init.d/mysql ]; then
+      cd /tmp
+      echo "mysql-server-5.7 mysql-server/root_password password password" | debconf-set-selections
+      echo "mysql-server-5.7 mysql-server/root_password_again password password" | debconf-set-selections
+      apt-get -y install mysql-server-5.7
+    fi
 
     if ! [ -f /usr/local/lib/libgeos-3.3.8.so ]; then
       cd /tmp
