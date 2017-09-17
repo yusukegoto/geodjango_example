@@ -68,8 +68,18 @@ Vagrant.configure("2") do |config|
   # mysql-server
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
-    apt-get install -y python2.7 python-pip mysql-client
+    apt-get install -y python2.7 python-pip mysql-client binutils
     pip install -U pip
     pip install virtualenv
+
+    if ! [ -f /usr/local/lib/libgeos-3.3.8.so ]; then
+      cd /tmp
+      wget http://download.osgeo.org/geos/geos-3.3.8.tar.bz2
+      tar xjf geos-3.3.8.tar.bz2
+      cd geos-3.3.8
+      ./configure
+      make
+      make install
+    fi
   SHELL
 end
