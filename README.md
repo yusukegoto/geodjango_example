@@ -24,3 +24,8 @@ $ . ~/.virtualenvs/geo/bin/activate
 ```
 
 Access to [http://192.168.33.10/admin](http://192.168.33.10/admin) in your browser.
+
+
+## Behavior
+
+`./manage.py list_nearest_branch` shows an example of geodjango with mysql usage.
