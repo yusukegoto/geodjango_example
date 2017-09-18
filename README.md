@@ -1,5 +1,8 @@
 # Geo Django Playground
 
+- [geodjango database api 1.11](https://docs.djangoproject.com/en/1.11/ref/contrib/gis/db-api/#compatibility-tables)
+- [geodjango required libraries 1.8](https://docs.djangoproject.com/en/1.8/ref/contrib/gis/install/geolibs/)
+
 ## Setup
 
 ```
