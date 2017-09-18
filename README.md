@@ -10,7 +10,7 @@ $ vagrant ssh
 ```
 $ cd /vagrant
 $ direnv allow .
-$ echo 'create database if not exists mysite' | mysql -uroot -p
+$ echo 'create database if not exists mysite default character set utf8' | mysql -uroot -p
 $ mkdir ~/.virtualenvs
 $ virtualenv ~/.virtualenvs/geo
 $ . ~/.virtualenvs/geo/bin/activate
