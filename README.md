@@ -23,7 +23,7 @@ $ . ~/.virtualenvs/geo/bin/activate
 (geo): ./manage.py runserver 0.0.0.0:8000
 ```
 
-Access to [http://192.168.33.10/admin](http://192.168.33.10/admin) in your browser.
+Access to [http://192.168.33.10:8000/admin](http://192.168.33.10:8000/admin) in your browser.
 
 
 ## Behavior
