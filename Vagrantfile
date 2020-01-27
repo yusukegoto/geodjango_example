@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "xenial-server-cloudimg-amd64"
+  config.vm.box = "ubuntu/xenial64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -66,23 +66,25 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   #
   config.vm.provision "shell", inline: <<-SHELL
-    apt-get update
-    apt-get install -y python2.7 python-pip mysql-client libmysqlclient-dev binutils
-    pip install -U pip
-    pip install virtualenv
+    apt update
+    apt upgrade -y
+    apt install -y python3-pip mysql-client libmysqlclient-dev libssl-dev
+    pip3 install -U pip
+    pip install pipenv
 
     if ! [ -f /etc/init.d/mysql ]; then
       cd /tmp
       echo "mysql-server-5.7 mysql-server/root_password password password" | debconf-set-selections
       echo "mysql-server-5.7 mysql-server/root_password_again password password" | debconf-set-selections
-      apt-get -y install mysql-server-5.7
+      apt install -y mysql-server-5.7
     fi
 
-    if ! [ -f /usr/local/lib/libgeos-3.3.8.so ]; then
+    LIBGEOS_VERSION=3.3.8
+    if ! [ -f /usr/local/lib/libgeos-${LIBGEOS_VERSION}.so ]; then
       cd /tmp
-      wget http://download.osgeo.org/geos/geos-3.3.8.tar.bz2
-      tar xjf geos-3.3.8.tar.bz2
-      cd geos-3.3.8
+      wget http://download.osgeo.org/geos/geos-${LIBGEOS_VERSION}.tar.bz2
+      tar xjf geos-${LIBGEOS_VERSION}.tar.bz2
+      cd geos-${LIBGEOS_VERSION}
       ./configure
       make
       make install
