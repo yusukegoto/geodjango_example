@@ -11,7 +11,7 @@ pyflakes = "==1.5.0"
 
 [packages]
 mysqlclient = "*"
-Django = "==1.11.23"
+Django = "==1.11.27"
 
 [requires]
 python_version = "3.5"
