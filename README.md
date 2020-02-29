@@ -12,10 +12,9 @@ $ docker-compose up -d db
 
 ```
 $ docker-compose run --rm app bash
-(geo) pipenv shell
-(geo): ./manage.py migrate
-(geo): ./manage.py createsupersuser
-(geo): ./manage.py runserver 0.0.0.0:8000
+> ./manage.py migrate
+> ./manage.py createsupersuser
+> ./manage.py runserver 0.0.0.0:8000
 ```
 
 Access to [http://192.168.33.10:8000/admin](http://192.168.33.10:8000/admin) in your browser.

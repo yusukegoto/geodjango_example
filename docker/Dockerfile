@@ -6,8 +6,9 @@ COPY docker/provision.sh /tmp/provision.sh
 WORKDIR /tmp
 RUN chmod +x provision.sh && ./provision.sh
 
-COPY Pipfile /app/Pipfile
-COPY Pipfile.lock /app/Pipfile.lock
+COPY requirements.txt /app/requirements.txt
+COPY requirements.dev.txt /app/requirements.dev.txt
 
 WORKDIR /app
-RUN pipenv install
+RUN pip install -r requirements.dev.txt
+

@@ -21,4 +21,5 @@ cd geos-${LIBGEOS_VERSION}
 make
 make install
 
-pip install -U pip pipenv
+pip install -U pip
+
