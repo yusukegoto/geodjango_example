@@ -1,26 +1,18 @@
 # Geo Django Playground
 
 - [geodjango database api 1.11](https://docs.djangoproject.com/en/1.11/ref/contrib/gis/db-api/#compatibility-tables)
-- [geodjango required libraries 1.8](https://docs.djangoproject.com/en/1.8/ref/contrib/gis/install/geolibs/)
+- [geodjango required libraries 1.11](https://docs.djangoproject.com/en/1.11/ref/contrib/gis/install/geolibs/)
 
 ## Setup
 
 ```
-$ vagrant up
-$ vagrant ssh
+$ docker-compose build
+$ docker-compose up -d db
 ```
 
 ```
-$ cd /vagrant
-$ direnv allow .
-$ echo 'create database if not exists mysite default character set utf8' | mysql -uroot -p
-$ mkdir ~/.virtualenvs
-$ virtualenv ~/.virtualenvs/geo
-$ . ~/.virtualenvs/geo/bin/activate
-```
-
-```
-(geo): pip install -r requirements.txt
+$ docker-compose run --rm app bash
+(geo) pipenv shell
 (geo): ./manage.py migrate
 (geo): ./manage.py createsupersuser
 (geo): ./manage.py runserver 0.0.0.0:8000

@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    image: geodjango_example:latest
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+    environment:
+      DB_HOST: db
+      DB_NAME: geo
+      DB_USER: root
+      DB_PASSWORD: ''
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+  db:
+    image: mysql:5.7.29
+    environment:
+      MYSQL_DATABASE: geo
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+
